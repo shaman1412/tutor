@@ -61,3 +61,23 @@
 .all-list-group {
   cursor: pointer;
 }
+
+@media screen and (min-width:660px){
+  .topic-card{
+    max-width: 50%;
+}
+}
+
+
+@media screen and (min-width:650px){
+  .topic-card{
+    max-width: 40%;
+}
+}
+
+
+@media screen and (min-width:1000px){
+  .topic-card{
+    max-width: 25%;
+}
+}
