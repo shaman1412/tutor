@@ -228,7 +228,7 @@ function saveData(){
 
     xhr.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
-            alert(this.response);
+            //alert(this.response);
             return false;
         }
     };
@@ -254,7 +254,7 @@ function senddata(event){
     xhr.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             checkId = this.response;
-            alert(JSON.parse(checkId)._id);
+            //alert(JSON.parse(checkId)._id);
                 return true;
         }else if(this.readyState == 4 && this.status != 200){
             alert(this.responseText);
