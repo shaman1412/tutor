@@ -29,7 +29,7 @@
     "babel-register": "^6.26.0"
   },
   "scripts": {
-    "start": "node start.js"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
