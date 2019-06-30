@@ -17,7 +17,7 @@ debugger;
             return false; 
         }
     };
-    xhr.open("GET","/getUserById/" + realpath ,true);
+    xhr.open("GET","/user/getUserById/" + realpath ,true);
     //http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     //xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send();
