@@ -120,7 +120,7 @@ function saveData(){
         }
     };
    
-    xhr.open("PUT","http://127.0.0.1:5000/user/updatelesson/" + JSON.parse(checkId)._id,true);
+    xhr.open("PUT",__dirname + "/user/updatelesson/" + JSON.parse(checkId)._id,true);
     //http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify(result));
@@ -154,7 +154,7 @@ function senddata(event){
 
         }
     };
-    xhr.open("POST","http://127.0.0.1:5000/user/register",true);
+    xhr.open("POST",__dirname + "/user/register",true);
     //http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify(data));

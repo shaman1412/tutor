@@ -15,6 +15,8 @@ app.use(express.static(__dirname+'/frontend'));
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json());
 app.use(cors());
+
+
 const route = express.Router();
 app.get('/',(req,res)=>{
     res.send("HEllo");
