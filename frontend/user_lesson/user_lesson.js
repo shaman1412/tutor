@@ -17,7 +17,7 @@ debugger;
             return false; 
         }
     };
-    xhr.open("GET","http://127.0.0.1:5000/user/getUserById/" + realpath ,true);
+    xhr.open("GET","/getUserById/" + realpath ,true);
     //http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     //xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send();
