@@ -16,9 +16,9 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json());
 app.use(cors());
 const route = express.Router();
-// app.get('/',(req,res)=>{
-//     res.send("HEllo");
-// })
+app.get('/',(req,res)=>{
+    res.send("HEllo");
+})
 
 app.get('/login',(req,res)=>{
     // res.sendFile('/frontend/login_page.html', {root: __dirname });
