@@ -45,8 +45,6 @@ route.get('/lessonView',(req,res)=>{
 })
 
 
-
-
 app.get('/test', (req,res)=>{
     res.sendFile(path.join(__dirname+"/frontend/index_tmp.html"))
 })

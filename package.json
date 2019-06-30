@@ -29,8 +29,6 @@
     "babel-register": "^6.26.0"
   },
   "scripts": {
-    "babel-node": "babel-node",
-    "test": "echo",
     "start": "node start.js"
   },
   "keywords": [],
