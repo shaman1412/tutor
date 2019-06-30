@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="login.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="login.js"></script>
+</head>
+<body>
+
+    <div class="panemodal">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6  nopadding">
+                    <div class="left_content">
+                        <img class="left_picture" src="/left_picture.jpg">
+                    <div id="content1" >
+                        <div id=left_text>
+                        <h3 style="color: white;">วิสัยทัศน์</h3>
+                        <br>
+                        <p style="color: white">ทหารพาติว คือสถาบันออนไลน์ที่มุ่งเน้นในการพัฒนา
+                                และดึงศักยภาพของน้องๆทำงานออกมาอย่างเต็มที่</p>
+                                <p style="color: white">
+                                        ก่อตั้งขึ้นโดยพี่โซ่ ที่เติบโตขึ้นจากเพจทหารพาติว
+                                        โดยต้องการสร้างวิธีการเรียนรูปแบบที่น้องผู้เรียน
+                                        ทำให้ทุกคนสามารถเรียนรู้ได้อย่างมีประสิทธิภาพ
+                                        และพัฒนาทักษะได้สูงสุด </p>
+                                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-sm-6 nopadding">
+                <div class="right_content">
+                <form onSubmit="return authenticate();" >
+                    <img  class="logo" src="/logo.png">
+                    <label for="username" style="margin-top: 40px ">Username</label>
+                    <input type="text" placeholder="Enter username" name="username" id="username" required>
+                    <lable for="password">Password</lable>
+                    <input type="password" placeholder="Enter password" name="password" id="password"required>
+                    <!-- <lable id="remem" style="display: block;margin-top: 10px; ">
+                        <input type="checkbox" checked="checked" name="remember">Remember
+                    </lable> -->
+                    <button type="submit"  style="margin-top: 10px">Login</button>
+                </form>
+                </div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+    function alet(){
+    alert("hi");
+}
+
+</script>

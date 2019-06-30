@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="admin_list.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/DataTables/datatables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="table_user.js"></script>
+</head>
+
+<body >
+    <nav>
+        <ul >
+        <li style="float: right"><a href>LOG OUT</a></li>
+    </ul>
+    </nav>
+
+    <div class="main-content">
+        
+                <div class="top-content">
+                    <h3>Manage Users
+                        <a style="color:#21dd2e;">+ Create User</a></h3>
+                </div>
+                <div class="middle-content" style="overflow-x:auto;">
+                    <table id="example" class="display" >
+                        <thead>
+                            <tr style="border-bottom: none;">
+                                <th>Name</th>
+                                <th>Position</th>
+                                <th>Office</th>
+                                <th>Age</th>
+                                <th>Start date</th>
+                                <th>Salary</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                                <td>61</td>
+                                <td>2011/04/25</td>
+                                <td>$320,800</td>
+                            </tr>
+                            <tr>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                                <td>61</td>
+                                <td>2011/04/25</td>
+                                <td>$320,800</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+                <!-- <p id="demo"></p> -->
+            </div>
+            
+
+   
+</body>
+
+</html>
+
+<script>
+    var obj, dbParam, xmlhttp, myObj, x, txt = "";
+    obj = { table: "customers", limit: 20 };
+    dbParam = JSON.stringify(obj);
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            myObj = JSON.parse(this.responseText);
+            txt += "<table border='1'>"
+            for (x in myObj) {
+                txt += "<tr><td>" + myObj[x].employee_name + "</td></tr>";
+            }
+            txt += "</table>"
+            document.getElementById("demo").innerHTML = txt;
+        }
+    };
+    xmlhttp.open("GET", "http://dummy.restapiexample.com/api/v1/employees", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("x=" + dbParam);
+</script>

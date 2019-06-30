@@ -1,0 +1,4 @@
+{
+    "key_secret" : "1412",
+    "connection_mongoose_url" : "mongodb://localhost/testNode"
+}

@@ -1,0 +1,54 @@
+.right-content .nav-tabs .nav-item{
+    margin-right: 0.1rem;
+  }
+
+  .right-content .nav-tabs .nav-link[class~="active"]{
+    box-shadow : 1px 0  grey;
+  }
+
+.right-content .nav-tabs .nav-link:not([class~="active"]){
+  background-color: #66cccc;
+  color: white;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 0px;
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.tab-content .container {
+  margin: 0;
+}
+
+.tab-content .card{
+    margin-right: 3px;
+    margin-left: 3px;
+    margin-top: 13px;
+    width : 100px;
+    height : 100px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.card .card-image-top{
+    width : 100%;
+    height : 70%;
+}
+
+.template{
+    display: none;
+}
+.clear-none .topic-card{
+  cursor : pointer;
+}
