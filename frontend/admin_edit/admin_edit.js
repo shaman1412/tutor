@@ -71,7 +71,7 @@ $(document).ready(function(){
 
 
     var xhr  = new XMLHttpRequest();
-    xhr.withCredentials = true
+  
     xhr.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             user = this.response;
@@ -209,7 +209,7 @@ function saveData(){
          debugger;
     }
     var xhr  = new XMLHttpRequest();
-    xhr.withCredentials = true
+
     xhr.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             alert(this.response);
@@ -234,7 +234,7 @@ function senddata(event){
 
 
     var xhr  = new XMLHttpRequest();
-    xhr.withCredentials = true
+ 
     xhr.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             checkId = this.response;

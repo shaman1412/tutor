@@ -11,7 +11,7 @@ function authenticate(){
         password : document.getElementById('password').value
     };
     var xhr  = new XMLHttpRequest();
-    xhr.withCredentials = true
+   
     xhr.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             const response = JSON.parse(this.response);
