@@ -22,7 +22,7 @@ function authenticate(){
 
         }
     };
-    xhr.open("POST",__dirname + "/user/authenticate" ,true);
+    xhr.open("POST", "/user/authenticate" ,true);
     //http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify(data));

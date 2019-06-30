@@ -79,7 +79,7 @@ $(document).ready(function(){
             return false; 
         }
     };
-    xhr.open("GET",__dirname + "/user/getUserById/5d187ff409e28a2630ae8b6b" ,true);
+    xhr.open("GET", "/user/getUserById/5d187ff409e28a2630ae8b6b" ,true);
     //http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     //xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send();
@@ -217,7 +217,7 @@ function saveData(){
         }
     };
    
-    xhr.open("PUT",__dirname + "/user/updatelesson/" + JSON.parse(user)._id,true);
+    xhr.open("PUT", "/user/updatelesson/" + JSON.parse(user)._id,true);
     //http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify(result));
@@ -245,7 +245,7 @@ function senddata(event){
 
         }
     };
-    xhr.open("PUT",__dirname + "/user/updatePass/" + JSON.parse(user)._id,true);
+    xhr.open("PUT","/user/updatePass/" + JSON.parse(user)._id,true);
     //http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify(data));

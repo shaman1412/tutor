@@ -11,6 +11,7 @@ router.get('/list', authenticateControl.checkAuthenticate ,getall);
 router.get('/getUserById/:id' ,getUser);
 router.put('/updatePass/:id', updateUser);
 router.put('/updatelesson/:id', updateLess)
+router.put('/delete/:id', deleteUser)
 function login(req, res, next){
     user_controller.authenticate(req.body)
     .then(user=> user ? res.json(user) : res.status(400).json({message : "username and password incorrect"}))
@@ -48,6 +49,12 @@ function getall(req,res, next){
     user_controller.getAllUser().then(user=> user ? res.json(user) : res.status(400).json({mess : "Error while get all user"}))
     .catch(err => next(err));
 }
+
+function deleteUser(req,res, next){
+    user_controller._delete(req.params.id).then(user=> user ? res.json(user) : res.status(400).json({mess : "Error while get all user"}))
+    .catch(err => next(err));
+}
+
 
 function updateUser(req,res,next){
     user_controller.updatePassword(req.params.id, req.body)

@@ -120,7 +120,7 @@ function saveData(){
         }
     };
    
-    xhr.open("PUT",__dirname + "/user/updatelesson/" + JSON.parse(checkId)._id,true);
+    xhr.open("PUT","/user/updatelesson/" + JSON.parse(checkId)._id,true);
     //http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify(result));
@@ -130,7 +130,7 @@ function saveData(){
 
 
 function senddata(event){
-
+    debugger;
     var data = {
         username : document.getElementById('username').value,
         password : document.getElementById('password').value,
@@ -154,7 +154,9 @@ function senddata(event){
 
         }
     };
-    xhr.open("POST",__dirname + "/user/register",true);
+    //var path = window.location.host;
+
+    xhr.open("POST", "/user/register" , true);
     //http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify(data));
