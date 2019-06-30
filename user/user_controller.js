@@ -17,14 +17,14 @@ let user = await userModel.findOne({username});
     if(user && bcrypts.compareSync(password,user.password)){
         let { password, ...otherAttr} = user.toObject();
         let token = jwt.sign({ ...otherAttr}, configure.key_secret)
-        let redirect = '/login/lesson/'+ user._id;
+        let redirectValue = '/login/lesson/'+ user._id;
         if(user.role == "Admin"){
-            redirect = '/login/edit/';
+            redirectValue = '/login/edit/';
         }
 
         return{
             ...otherAttr,
-            redirect : 
+            redirect : redirectValue,
             token
         }
 

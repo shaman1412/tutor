@@ -7,6 +7,21 @@ $(document).ready(function(){
         debugger;
         var title = $('#template-lesson').html();
         $('.title-group').last().after( title );
+        $('.lesson-title-hide').on('click', function(){
+            debugger;
+            if( $(this).hasClass('btn-success')){
+                $(this).removeClass('btn-success');
+                $(this).addClass('btn-secondary');
+                var index = $(this).parent().parent().parent().index();
+                userObject.lesson[index].invisible = false;
+            }else{
+                $(this).addClass('btn-success');
+                $(this).removeClass('btn-secondary');
+                var index = $(this).parent().parent().parent().index();
+                userObject.lesson[index].invisible = true;
+            }
+          
+        });
     }));
     
     $('.save-lesson').on('click','.lesson-subject-add',(function(){
@@ -139,6 +154,7 @@ function setLesson(){
 
 
         $('#lesson-form').find('.title-group').each(function(){
+            debugger;
             var index = $(this).index();
             if(userObject.lesson[index].invisible){
                 debugger;
