@@ -79,7 +79,7 @@ $(document).ready(function(){
             return false; 
         }
     };
-    xhr.open("GET", "/user/getUserById/5d187ff409e28a2630ae8b6b" ,true);
+    xhr.open("GET", "/user/getUserById/5d18cf830c94530f74aa5557" ,true);
     //http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     //xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send();
