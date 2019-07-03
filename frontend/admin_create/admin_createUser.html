@@ -10,20 +10,25 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/admin_create/admin_createUser.js"></script>
    
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 <header>
 <img src="/picture/logo.png" alt="">
 </header>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link " href="http://127.0.0.1:5000/web1">Manage List</a>
+        <ul class="navbar-nav ">
+                <li class="nav-item ">
+                    <a class="nav-link " href="/login/edit">Edit</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="http://127.0.0.1:5000/web">Create</a>
+                <li  class="nav-item">
+                    <a class="nav-link active" href="/login/create">Create</a>
                 </li>
             </ul>
+            <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/login" onclick="return logout(this)"><span style="color: white;margin-right:6px; "class="fas fa-sign-out-alt"></span>Log out</a>
+                    </li>
+                </ul>
 </nav>
 <body>
 <template id="template-lesson">

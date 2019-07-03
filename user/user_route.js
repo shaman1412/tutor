@@ -6,16 +6,25 @@ const authenticateControl = require('../authenticate');
 var router = app.Router();
 
 router.post('/authenticate' ,login);
-router.post('/register', register);
-router.get('/list', authenticateControl.checkAuthenticate ,getall);
-router.get('/getUserById/:id' ,getUser);
-router.put('/updatePass/:id', updateUser);
-router.put('/updatelesson/:id', updateLess)
-router.put('/delete/:id', deleteUser)
+router.post('/register',authenticateControl.checkAuthenticateMethod, register);
+router.get('/list', authenticateControl.checkAuthenticateMethod ,getall);
+router.get('/getUserById/:id' ,authenticateControl.checkAuthenticateMethodGetUserByID, getUser);
+router.put('/updatePass/:id',authenticateControl.checkAuthenticateMethod, updateUser);
+router.put('/updatelesson/:id',authenticateControl.checkAuthenticateMethod, updateLess)
+router.put('/delete/:id',authenticateControl.checkAuthenticateMethod, deleteUser)
 function login(req, res, next){
     user_controller.authenticate(req.body)
-    .then(user=> user ? res.json(user) : res.status(400).json({message : "username and password incorrect"}))
-    .catch(err => next(err));
+    .then(user=> {
+       if(user){
+            //res.setHeader('Set-Cookie', ['tutorloginToken=' ]);
+            res.status(200).json(user);
+            // res.setHeader("Content-Type", "text/html")
+            // //return res.sendFile(path.join(__dirname+'/frontend/admin_create/admin_createUser.html'));
+            // return res.redirect("/login/create");
+        }else{
+            res.status(400).json({message : "username and password incorrect"})
+        }
+    }).catch(err => next(err));
 }
 
 function register(req, res, next){

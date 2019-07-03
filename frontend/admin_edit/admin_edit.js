@@ -94,6 +94,7 @@ $(document).ready(function(){
             return false; 
         }
     };
+    //xhr.open("GET", "/user/getUserById/5d187ff409e28a2630ae8b6b" ,true);
     xhr.open("GET", "/user/getUserById/5d18cf830c94530f74aa5557" ,true);
     //http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     //xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -233,6 +234,7 @@ function saveData(){
         }
     };
    
+    
     xhr.open("PUT", "/user/updatelesson/" + JSON.parse(user)._id,true);
     //http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -268,5 +270,11 @@ function senddata(event){
     return false;
 }
     
-
+function logout(event){
+    debugger;
+    //event.preventDefault();
+     //document.cookie = "tutorloginToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "tutorloginToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    // window.location.href = "/";
+}
 

@@ -15,14 +15,16 @@ module.exports = {
 async function authenticate({username , password}){
 let user = await userModel.findOne({username});
     if(user && bcrypts.compareSync(password,user.password)){
-        let { password, ...otherAttr} = user.toObject();
-        let token = jwt.sign({ ...otherAttr}, configure.key_secret)
+        let { password, username,  _id, role ,...otherAttr} = user.toObject();
+        let token = jwt.sign({ username, role, _id}, configure.key_secret)
         let redirectValue = '/login/lesson/'+ user._id;
-        if(user.role == "Admin"){
+        if(user.role && user.role == "Admin"){
             redirectValue = '/login/edit/';
         }
 
         return{
+            username, 
+            role,
             ...otherAttr,
             redirect : redirectValue,
             token
@@ -70,8 +72,6 @@ async function updateLesson(id,userParam){
         }
         Object.assign(user,userCreate);
     return await user.save();
-    
-
 } 
 
 async function updatePassword(id,userParam){

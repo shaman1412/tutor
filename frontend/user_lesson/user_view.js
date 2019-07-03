@@ -15,6 +15,6 @@ function setVideo(){
     var decodedData = window.atob(myParam)
     var removeSharing = decodedData.replace('view?usp=sharing', 'preview');
     var str = removeSharing.replace(/\s+/g, '');
-    var iframe = " <iframe src=\"" + str+"\" frameborder=\"0\"  scrolling=\"no\" seamless=\"\" allowfullscreen=\"true\" width=\"740\" height=\"580\"></iframe>"
+    var iframe = " <iframe src=\"" + str+"\" frameborder=\"0\"  scrolling=\"no\" seamless=\"\" allowfullscreen=\"true\" width=\"640\" height=\"480\"></iframe>"
     document.getElementById('inputIframe').innerHTML = iframe;
 }

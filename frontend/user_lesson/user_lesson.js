@@ -34,7 +34,7 @@ function openInNewTab(link) {
     debugger;
     var lnk = link.getAttribute("set-link");
     var query= window.btoa(lnk);
-    var win = window.open("/login/lessonView?link=" + query, '_blank');
+    var win = window.open("/login/lessonView/"+ JSON.parse(user)._id + "?link=" + query, '_blank');
     win.focus();
 }
 
@@ -154,9 +154,9 @@ function showUserDetail(){
 debugger;
           var  topGroupAll  = document.getElementsByClassName('all-topic-group')[0];
 
-          topGroupAll.addEventListener('click', function(){
-                alert('dsfsd');
-            })
+        //   topGroupAll.addEventListener('click', function(){
+        //         alert('dsfsd');
+        //     })
 
 
 
@@ -169,4 +169,11 @@ debugger;
     
         }
 
+}
+function logout(event){
+    debugger;
+    //event.preventDefault();
+     //document.cookie = "tutorloginToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "tutorloginToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    // window.location.href = "/";
 }

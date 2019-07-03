@@ -1,31 +1,114 @@
 const jwt = require('jsonwebtoken');
 const jwtToken = require('./configure.json');
-
+const userModel = require('./user/user_model');
+const url = require('url');
 module.exports = {
     checkAuthenticate,
-    checkAuthenticateUpdate
+    checkAuthenticateLesson,
+    checkAutoLogin,
+    checkAuthenticateLessonView,
+    checkAuthenticateMethod,
+    checkAuthenticateMethodGetUserByID
 }
 
-async function checkAuthenticate(req,res,next){
-    if(req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'jwt'){
-        const payload = req.headers.authorization.split(' ')[1];
-        jwt.verify(payload, jwtToken.key_secret, function(err, decode){
-            if(err) res.status(400).json({message : "No permission granted"});
-           next()
+async function checkAutoLogin(req,res,next){
+    if(req.cookies && req.cookies.tutorloginToken){
+        let payload = req.cookies.tutorloginToken;
+        await jwt.verify(payload, jwtToken.key_secret, function(err,decode){
+            if(err){ next();}
+            if(decode.role && decode.role == "Admin"){
+                res.redirect('/login/create');
+            }else{ res.redirect('/login/lesson/' + decode._id);}
         });
     }else{
-        res.status(400).json({message : "No permission granted"});
+       next();
+    }
+    
+}
+
+
+async function checkAuthenticate(req,res,next){
+    if(req.cookies && req.cookies.tutorloginToken){
+        let payload = req.cookies.tutorloginToken;
+        jwt.verify(payload, jwtToken.key_secret, function(err, decode){
+            if(err) { next();}
+            if(decode.role && decode.role == "Admin"){
+               next();
+              //  res.end();
+            }else{ res.redirect('/login/lesson/' + decode._id);}
+        });
+    }else{
+      res.redirect('/');
     }
 }
 
-async function checkAuthenticateUpdate(req,res,next){
-    if(req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'jwt'){
-        const payload = req.headers.authorization.split(' ')[1];
+async function checkAuthenticateLesson(req,res,next){
+    if(req.cookies && req.cookies.tutorloginToken){
+        let payload = req.cookies.tutorloginToken;
         jwt.verify(payload, jwtToken.key_secret, function(err, decode){
-            if(err || decode.role !== "admin") res.status(400).json({message : "No permission granted"});
-           next()
+            if(err) { next();}
+            if(req.params.id == decode._id){
+               next();
+              //  res.end();
+            }else{ res.redirect('/login/lesson/' + decode._id);}
         });
     }else{
-        res.status(400).json({message : "No permission granted"});
+      next();
+    }
+}
+
+async function checkAuthenticateLessonView(req,res,next){
+    if(req.cookies && req.cookies.tutorloginToken){
+        let url_parse = url.parse(req.url,true);
+        var query = url_parse.query;
+        let payload = req.cookies.tutorloginToken;
+        jwt.verify(payload, jwtToken.key_secret, function(err, decode){
+            if(err) { next();}
+            if(req.params.id == decode._id){
+               next();
+              //  res.end();
+            }else{ res.redirect('/login/lesson/' + decode._id);}
+        });
+    }else{
+      next();
+    }
+}
+
+
+async function checkAuthenticateMethod(req,res,next){
+    if(req.cookies && req.cookies.tutorloginToken){
+        let url_parse = url.parse(req.url,true);
+        var query = url_parse.query;
+        let payload = req.cookies.tutorloginToken;
+        jwt.verify(payload, jwtToken.key_secret, function(err, decode){
+            if(err) {res.send({"Message": "No permission granted"});}
+            if(decode.role && decode.role == "Admin"){
+               next();
+              //  res.end();
+            }
+            res.send({"Message": "No permission granted"});
+        });
+    }else{
+        res.send({"Message": "No permission granted"});
+    }
+}
+
+
+async function checkAuthenticateMethodGetUserByID(req,res,next){
+    if(req.cookies && req.cookies.tutorloginToken){
+        let url_parse = url.parse(req.url,true);
+        var query = url_parse.query;
+        let payload = req.cookies.tutorloginToken;
+        jwt.verify(payload, jwtToken.key_secret, function(err, decode){
+            if(err) { res.send({"Message": "No permission granted"});}
+            if(req.params.id == decode._id || (decode.role &&  decode.role == "Admin")){
+               next();
+              //  res.end();
+            }else{
+            res.send({"Message": "No permission granted"});
+            }
+        });
+    }else{
+        res.send({"Message": "No permission granted"});
     }
 }
