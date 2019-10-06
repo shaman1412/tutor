@@ -1,9 +1,7 @@
 var checkId = '';
 $(document).ready(function() {
   checkId = '';
-  debugger;
   $('.save-lesson').on('click', '.lesson-title-add', function() {
-    debugger;
     var title = $('#template-lesson').html();
     $('.title-group')
       .last()
@@ -11,7 +9,6 @@ $(document).ready(function() {
   });
 
   $('.save-lesson').on('click', '.lesson-subject-add', function() {
-    debugger;
     var subject = $('#template-subject').html();
     $(this)
       .parent()
@@ -21,7 +18,6 @@ $(document).ready(function() {
   });
 
   $('.save-lesson').on('click', '.lesson-topic-add', function() {
-    debugger;
     var subject = $('#template-topic').html();
     $(this)
       .parent()
@@ -31,7 +27,6 @@ $(document).ready(function() {
   });
 
   $('.save-lesson').on('click', '.lesson-title-remove', function() {
-    debugger;
     if (
       $(this)
         .parent()
@@ -50,7 +45,6 @@ $(document).ready(function() {
   });
 
   $('.save-lesson').on('click', '.lesson-subject-remove', function() {
-    debugger;
     if (
       $(this)
         .parent()
@@ -69,7 +63,6 @@ $(document).ready(function() {
   });
 
   $('.save-lesson').on('click', '.lesson-topic-remove', function() {
-    debugger;
     if (
       $(this)
         .parent()
@@ -118,7 +111,6 @@ function titleObject() {
 function saveData() {
   var result = { lesson: [] };
   var title = document.getElementsByClassName('title-group');
-  debugger;
   var i;
   try {
     for (i = 0; i < title.length; i++) {
@@ -142,7 +134,7 @@ function saveData() {
       result.lesson.push(titlTmp);
     }
   } catch (e) {
-    debugger;
+    console.log(e);
   }
   var xhr = new XMLHttpRequest();
 
@@ -163,7 +155,6 @@ function saveData() {
 }
 
 function senddata(event) {
-  debugger;
   var data = {
     username: document.getElementById('username').value,
     password: document.getElementById('password').value

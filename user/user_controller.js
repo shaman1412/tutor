@@ -57,7 +57,7 @@ async function createUser(userParam) {
 }
 
 async function updateLesson(id, userParam) {
-  let user = await userModel.findById(id);
+  let user = await UserModel.findById(id);
   if (!user) throw 'user not found';
   //if(role != "Admin") throw 'No permission granted';
   let userCreate = {
@@ -68,7 +68,7 @@ async function updateLesson(id, userParam) {
 }
 
 async function updatePassword(id, userParam) {
-  let user = await userModel.findById(id);
+  let user = await UserModel.findById(id);
   if (!user) throw 'user not found';
   if (user.role != 'Admin') throw 'No permission granted';
   if (userParam.password) {
@@ -82,7 +82,7 @@ async function updatePassword(id, userParam) {
 }
 
 async function _delete(id) {
-  return await userModel.findByIdAndDelete(id);
+  return await UserModel.findByIdAndDelete(id);
 }
 
 module.exports = {
