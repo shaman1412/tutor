@@ -125,6 +125,17 @@ function showUserDetail() {
             $(this).hide();
           }
         });
+        var nameID = '#titleId' + index;
+        $('.tab-content')
+          .find(nameID)
+          .find('.clear-none')
+          .each(function() {
+            if ($(this).index() == 1) {
+              $(this).show();
+            } else {
+              $(this).hide();
+            }
+          });
       });
 
       $('.list-group').each(function() {
