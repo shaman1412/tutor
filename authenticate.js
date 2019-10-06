@@ -8,6 +8,7 @@ module.exports = {
     checkAutoLogin,
     checkAuthenticateLessonView,
     checkAuthenticateMethod,
+    checkAuthenticateMethodDelete,
     checkAuthenticateMethodGetUserByID
 }
 
@@ -47,7 +48,7 @@ async function checkAuthenticateLesson(req,res,next){
         let payload = req.cookies.tutorloginToken;
         jwt.verify(payload, jwtToken.key_secret, function(err, decode){
             if(err) { next();}
-            if(req.params.id == decode._id){
+            if(req.params.id == decode._id || decode.role == "Admin"){
                next();
               //  res.end();
             }else{ res.redirect('/login/lesson/' + decode._id);}
@@ -64,7 +65,7 @@ async function checkAuthenticateLessonView(req,res,next){
         let payload = req.cookies.tutorloginToken;
         jwt.verify(payload, jwtToken.key_secret, function(err, decode){
             if(err) { next();}
-            if(req.params.id == decode._id){
+            if(req.params.id == decode._id || decode.role == "Admin"){
                next();
               //  res.end();
             }else{ res.redirect('/login/lesson/' + decode._id);}
@@ -85,8 +86,9 @@ async function checkAuthenticateMethod(req,res,next){
             if(decode.role && decode.role == "Admin"){
                next();
               //  res.end();
+            }else{
+                res.send({"Message": "No permission granted"});
             }
-            res.send({"Message": "No permission granted"});
         });
     }else{
         res.send({"Message": "No permission granted"});
@@ -111,4 +113,28 @@ async function checkAuthenticateMethodGetUserByID(req,res,next){
     }else{
         res.send({"Message": "No permission granted"});
     }
+}
+
+async function checkAuthenticateMethodDelete(req,res,next){
+    if(req.cookies && req.cookies.tutorloginToken){
+        let url_parse = url.parse(req.url,true);
+        let payload = req.cookies.tutorloginToken;
+        jwt.verify(payload, jwtToken.key_secret, function(err, decode){
+            if(err) { res.send({"Message": "No permission granted"});}
+            if(decode.role &&  decode.role == "Admin"){
+                if(req.params.id == decode._id ){
+                    res.send({"Message": "Cant delete using account this moment"});
+                }else{
+                    next();
+                }
+               
+              //  res.end();
+            }else{
+            res.send({"Message": "No permission granted"});
+            }
+        });
+    }else{
+        res.send({"Message": "No permission granted"});
+    }
+
 }

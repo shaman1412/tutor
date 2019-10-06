@@ -1,0 +1,17 @@
+
+@import "t1";
+@import "../login/l2";
+$textred : red;
+$background : white;
+
+body{
+    @extend li;
+    color: $textred;
+    background-color: $background;
+    font: $tins $myBlue;
+}
+
+.button-report  {
+    @extend .button-basic;
+    background-color: red;
+  }

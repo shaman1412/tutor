@@ -1,96 +1,96 @@
-const userModel = require('./user_model');
 const bcrypts = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const configure = require('../configure.json')
+const UserModel = require('./user_model');
+const configure = require('../configure.json');
+
+async function authenticate({ username, password }) {
+  const user = await UserModel.findOne({ username });
+  if (user && bcrypts.compareSync(password, user.password)) {
+    const { password, username, _id, role, ...otherAttr } = user.toObject();
+    const token = jwt.sign({ username, role, _id }, configure.key_secret);
+    let redirectValue = `/login/lesson/${user._id}`;
+    if (user.role && user.role === 'Admin') {
+      redirectValue = '/login/list';
+    }
+
+    return {
+      username,
+      role,
+      ...otherAttr,
+      redirect: redirectValue,
+      token
+    };
+  }
+  return null;
+}
+
+async function getAllUser() {
+  const user = await UserModel.find().select(' -password');
+  return user;
+}
+
+async function geUserById(id) {
+  const user = await UserModel.findById(id).select(' -password');
+  return user;
+}
+
+async function createUser(userParam) {
+  // const checkDuplicate =  await function(){
+  //   return userModel.findOne({ usernaem : userParam.username});
+  // }
+  //  await userModel.init().then( async function(){
+  if (await UserModel.findOne({ username: userParam.username })) {
+    const error = `Username${userParam.username}is already taken`;
+    throw error;
+  }
+  const userCreate = {
+    username: userParam.username,
+    password: userParam.password,
+    // lesson : userParam.lesson,
+    role: userParam.role
+  };
+  const userCeated = new UserModel(userCreate);
+  if (userParam.password) {
+    userCeated.password = bcrypts.hashSync(userParam.password, 10);
+  }
+  return await userCeated.save();
+}
+
+async function updateLesson(id, userParam) {
+  let user = await userModel.findById(id);
+  if (!user) throw 'user not found';
+  //if(role != "Admin") throw 'No permission granted';
+  let userCreate = {
+    lesson: userParam.lesson
+  };
+  Object.assign(user, userCreate);
+  return await user.save();
+}
+
+async function updatePassword(id, userParam) {
+  let user = await userModel.findById(id);
+  if (!user) throw 'user not found';
+  if (user.role != 'Admin') throw 'No permission granted';
+  if (userParam.password) {
+    userParam.password = bcrypts.hashSync(userParam.password, 10);
+  }
+  let userCreate = {
+    password: userParam.password
+  };
+  Object.assign(user, userCreate);
+  return await user.save();
+}
+
+async function _delete(id) {
+  return await userModel.findByIdAndDelete(id);
+}
+
 module.exports = {
-    authenticate,
-    getAllUser,
-    geUserById,
-    createUser,
-    updatePassword,
-    _delete,
-    updateLesson
-}
-
-async function authenticate({username , password}){
-let user = await userModel.findOne({username});
-    if(user && bcrypts.compareSync(password,user.password)){
-        let { password, username,  _id, role ,...otherAttr} = user.toObject();
-        let token = jwt.sign({ username, role, _id}, configure.key_secret)
-        let redirectValue = '/login/lesson/'+ user._id;
-        if(user.role && user.role == "Admin"){
-            redirectValue = '/login/edit/';
-        }
-
-        return{
-            username, 
-            role,
-            ...otherAttr,
-            redirect : redirectValue,
-            token
-        }
-
-    }
+  authenticate,
+  getAllUser,
+  geUserById,
+  createUser,
+  updatePassword,
+  _delete,
+  updateLesson
 };
-
-async function getAllUser(){
-    return await userModel.find().select(' -password');
-}
-
-async function geUserById(id){
-    return await userModel.findById(id).select(' -password');
-}
-
-async function createUser(userParam){
-    // const checkDuplicate =  await function(){
-    //   return userModel.findOne({ usernaem : userParam.username});
-    // }
-    //await userModel.init().then( async function(){
-    if(await userModel.findOne({ username : userParam.username})){
-        throw 'Username "' + userParam.username + '" is already taken';
-    }
-    let userCreate = {
-        username : userParam.username,
-        password : userParam.password,
-        //lesson : userParam.lesson,
-        role : userParam.role
-    }
-    const userCeated = new userModel(userCreate);
-    if(userParam.password){
-        userCeated.password = bcrypts.hashSync(userParam.password,10);
-    }
-    return  await userCeated.save();
-
-} 
-
-async function updateLesson(id,userParam){
-    let user = await userModel.findById(id);
-    if(!user) throw 'user not found';
-    //if(role != "Admin") throw 'No permission granted';
-        let userCreate = {
-            lesson : userParam.lesson
-        }
-        Object.assign(user,userCreate);
-    return await user.save();
-} 
-
-async function updatePassword(id,userParam){
-    let user = await userModel.findById(id);
-    if(!user) throw 'user not found';
-    if(user.role != "Admin") throw 'No permission granted';
-        if(userParam.password){
-            userParam.password = bcrypts.hashSync( userParam.password, 10);
-        }
-        let userCreate = {
-            password : userParam.password
-        }
-        Object.assign(user,userCreate);
-    return await user.save();
-    
-}
-
-
-async function _delete(id){
-    return await userModel.findByIdAndDelete(id);
-}
-

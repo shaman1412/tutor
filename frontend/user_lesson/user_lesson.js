@@ -151,12 +151,11 @@ function showUserDetail(){
                 }
             });
 
-debugger;
-          var  topGroupAll  = document.getElementsByClassName('all-topic-group')[0];
-
-        //   topGroupAll.addEventListener('click', function(){
-        //         alert('dsfsd');
-        //     })
+            // if(userObject.role == "Admin"){
+            //     document.getElementsByClassName("list-nav")[0].style.display = "inline-block";
+            //     document.getElementsByClassName("create-nav")[0].style.display = "inline-block";
+            // }
+           
 
 
 
@@ -169,11 +168,4 @@ debugger;
     
         }
 
-}
-function logout(event){
-    debugger;
-    //event.preventDefault();
-     //document.cookie = "tutorloginToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    document.cookie = "tutorloginToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    // window.location.href = "/";
 }

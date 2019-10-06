@@ -4,11 +4,9 @@ $(document).ready(function(){
 
 
     $('.save-lesson').on('click','.lesson-title-add',(function(){
-        debugger;
         var title = $('#template-lesson').html();
         $('.title-group').last().after( title );
         $('.lesson-title-hide').on('click', function(){
-            debugger;
             if( $(this).hasClass('btn-success')){
                 $(this).removeClass('btn-success');
                 $(this).addClass('btn-secondary');
@@ -25,19 +23,16 @@ $(document).ready(function(){
     }));
     
     $('.save-lesson').on('click','.lesson-subject-add',(function(){
-        debugger;
         var subject = $('#template-subject').html();
         $(this).parent().parent().parent().after(subject);
     }));
     
     $('.save-lesson').on('click','.lesson-topic-add',(function(){
-        debugger;
         var subject =  $('#template-topic').html();
         $(this).parent().parent().parent().after(subject);
     }));
     
     $('.save-lesson').on('click','.lesson-title-remove',(function(){
-        debugger;
         if($(this).parent().parent().parent().siblings().length != 1){
             $(this).parent().parent().parent().remove();
         }else{
@@ -47,7 +42,6 @@ $(document).ready(function(){
     }));
     
     $('.save-lesson').on('click','.lesson-subject-remove',(function(){
-        debugger;
         if($(this).parent().parent().parent().siblings().length != 1){
             $(this).parent().parent().parent().remove();
         }else{
@@ -56,7 +50,6 @@ $(document).ready(function(){
     }));
     
     $('.save-lesson').on('click','.lesson-topic-remove',(function(){
-        debugger;
         if($(this).parent().parent().parent().siblings().length != 1){
             $(this).parent().parent().parent().remove();
         }else{
@@ -67,23 +60,22 @@ $(document).ready(function(){
 
     
     $('#manage-lesson').on('click',(function(){
-        debugger;
         $('.save-userpass').hide();
         $('.save-lesson').show();
+        $('.preview').show();
         $('#manage-password').removeClass('active');
         $('#manage-lesson').addClass('active');
     }));
     
     $('#manage-password').on('click',(function(){
-        debugger;
         $('.save-userpass').show();
         $('.save-lesson').hide();
+        $('.preview').hide();
         $('#manage-lesson').removeClass('active');
         $('#manage-password').addClass('active');
     }));
 
-    
-
+    const id = getIdLink();
 
     var xhr  = new XMLHttpRequest();
   
@@ -95,7 +87,7 @@ $(document).ready(function(){
         }
     };
     //xhr.open("GET", "/user/getUserById/5d187ff409e28a2630ae8b6b" ,true);
-    xhr.open("GET", "/user/getUserById/5d18cf830c94530f74aa5557" ,true);
+    xhr.open("GET", "/user/getUserById/"+ id ,true);
     //http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     //xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send();
@@ -109,8 +101,8 @@ $(document).ready(function(){
 function setLesson(){
     if(user){
         try {
-            
-      userObject = JSON.parse(user);
+    userObject = JSON.parse(user);
+    document.getElementById('username-show').textContent = "Username : "+ userObject.username;
      var form = document.getElementById('lesson-form');
      var lesson = document.getElementById('template-lesson-scratch');
      var subject = document.getElementById('template-subject-scratch');
@@ -134,11 +126,19 @@ function setLesson(){
                     formSubject.getElementsByClassName('topic-group')[topicIndex].getElementsByClassName('topic-link')[0].value = topicObject[topicIndex].link;
                 }
             }
+
+
         }
+
+        if(userObject.lesson.length == 0){
+            let lessonTemp = document.getElementById('template-lesson');
+            var cloneLesson = lessonTemp.content.cloneNode(true);
+            form.appendChild(cloneLesson);
+        }
+
         $('#lesson-form').append("<button  type=\"submit\" id=\"button-save-lesson\" class=\"btn btn-primary float-right mt-2\">Saveee</button> ");
 
         $('.lesson-title-hide').on('click', function(){
-            debugger;
             if( $(this).hasClass('btn-success')){
                 $(this).removeClass('btn-success');
                 $(this).addClass('btn-secondary');
@@ -155,10 +155,8 @@ function setLesson(){
 
 
         $('#lesson-form').find('.title-group').each(function(){
-            debugger;
             var index = $(this).index();
             if(userObject.lesson[index].invisible){
-                debugger;
                 $(this).find('#lesson-title').find('.lesson-title-hide').addClass('btn-secondary');
                 $(this).find('#lesson-title').find('.lesson-title-hide').removeClass('btn-success');
             }else{
@@ -170,7 +168,7 @@ function setLesson(){
 
 
     } catch (error) {
-            debugger;
+
     }
 
 
@@ -197,7 +195,6 @@ function titleObject(){
 function saveData(){
     var result = {lesson : []};
     var title = document.getElementsByClassName('title-group');
-    debugger;
     var i;
     try{
     for(i = 0 ; i < title.length ; i++){
@@ -223,13 +220,13 @@ function saveData(){
         result.lesson.push(titlTmp);
     }
         }catch(e){
-         debugger;
     }
     var xhr  = new XMLHttpRequest();
 
     xhr.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             //alert(this.response);
+            $("#updatelessonModal").modal('show');
             return false;
         }
     };
@@ -270,11 +267,33 @@ function senddata(event){
     return false;
 }
     
-function logout(event){
-    debugger;
-    //event.preventDefault();
-     //document.cookie = "tutorloginToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    document.cookie = "tutorloginToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    // window.location.href = "/";
+function preview(){
+   window.location.href = "/login/lesson/" + userObject._id;
 }
 
+
+function getIdLink(){
+    let urlParams = window.location.pathname;
+    let sizeURL = urlParams.length;
+    let sizepath = "/login/edit/".length;
+    return urlParams.substring(sizepath,sizeURL);
+}
+
+function deleteUser(){
+    let xhr  = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            checkId = this.response;
+            //alert(JSON.parse(checkId)._id);
+            window.location.href = "/login/list";
+                return true;
+        }else if(this.readyState == 4 && this.status != 200){
+            alert(this.responseText);
+
+        }
+    };
+    xhr.open("PUT","/user/delete/" + JSON.parse(user)._id,true);
+    //http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.send();
+}

@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="admin_list.css">
+    <link rel="stylesheet" href="/general_resources/header_navigation/header_navigation.css">
+    <link rel="stylesheet" href="/admin_Showlist/admin_list.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -14,51 +15,58 @@
     <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" charset="utf8"
         src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="table_user.js"></script>
+    <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet"/>
+    <script type="text/javascript" src="/admin_ShowList/admin_list.js" ></script>
+    <script  type="text/javascript" src="/general_resources/js_resource/logout.js"></script>
 </head>
-
-<body >
-    <nav>
-        <ul >
-        <li style="float: right"><a href>LOG OUT</a></li>
-    </ul>
-    </nav>
+<header>
+    <img src="/picture/logo.png" alt="">
+</header>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <ul class="navbar-nav ">
+            <li class="nav-item ">
+                <a class="nav-link active" href="/login/list">ManageList</a>
+            </li>
+            <li  class="nav-item">
+                <a class="nav-link " href="/login/create">Create</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="logout nav-link" href="/login" onclick="return logout(this)"><span style="color: white;margin-right:6px; "class="fas fa-sign-out-alt"></span>Log out</a>
+                </li>
+            </ul>
+</nav>
+<body style="background-color: white">
+    
+        <nav class="nav-create-user navbar navbar-expand-sm ">
+                    <ul class="navbar-nav ml-auto">
+                            <!-- <li class="nav-seach-user nav-item mr-3">
+                                   <input class="have-fontawsome font-awsome nav-link"  type="text" placeholder="&#xf002; Seach users">
+                                </li> -->
+                            <li class="nav-add-user nav-item ">
+                                <a class="nav-link" href="/login/create" ><span style="color: white;margin-right:6px; "class="fas fa-plus"></span>Create User</a>
+                            </li>
+                    </ul>
+        </nav>
 
     <div class="main-content">
         
                 <div class="top-content">
-                    <h3>Manage Users
-                        <a style="color:#21dd2e;">+ Create User</a></h3>
+                 
+                      
                 </div>
                 <div class="middle-content" style="overflow-x:auto;">
                     <table id="example" class="display" >
                         <thead>
                             <tr style="border-bottom: none;">
                                 <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
+                                <th>Username</th>
+                                <th>Status</th>
+                                <th>Update Date</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
-                            </tr>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
-                            </tr>
+                        <tbody class="table-body">
                         </tbody>
 
                     </table>
@@ -71,24 +79,3 @@
 </body>
 
 </html>
-
-<script>
-    var obj, dbParam, xmlhttp, myObj, x, txt = "";
-    obj = { table: "customers", limit: 20 };
-    dbParam = JSON.stringify(obj);
-    xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            myObj = JSON.parse(this.responseText);
-            txt += "<table border='1'>"
-            for (x in myObj) {
-                txt += "<tr><td>" + myObj[x].employee_name + "</td></tr>";
-            }
-            txt += "</table>"
-            document.getElementById("demo").innerHTML = txt;
-        }
-    };
-    xmlhttp.open("GET", "http://dummy.restapiexample.com/api/v1/employees", true);
-    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.send("x=" + dbParam);
-</script>

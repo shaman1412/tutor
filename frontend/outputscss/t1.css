@@ -1,0 +1,14 @@
+ul li {
+  border-style: dashed;
+  font: 18px;
+}
+
+.button-basic {
+  border: none;
+  padding: 15px 30px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=t1.css.map */

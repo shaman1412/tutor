@@ -54,13 +54,17 @@ route.get('/create',authenticate.checkAuthenticate,(req,res)=>{
 
 
 
-route.get('/edit',authenticate.checkAuthenticate,(req,res)=>{
+route.get('/edit/:id',authenticate.checkAuthenticate,(req,res)=>{
     res.sendFile(path.join(__dirname+'/frontend/admin_edit/admin_edit.html'));
 })
 
-route.get('/lesson',authenticate.checkAuthenticateLesson,(req,res)=>{
-    res.sendFile(path.join(__dirname+'/frontend/user_lesson/user_lesson.html'));
+route.get('/list',authenticate.checkAuthenticate,(req,res)=>{
+    res.sendFile(path.join(__dirname+'/frontend/admin_Showlist/admin_showList.html'));
 })
+
+// route.get('/lesson',authenticate.checkAuthenticateLesson,(req,res)=>{
+//     res.sendFile(path.join(__dirname+'/frontend/user_lesson/user_lesson.html'));
+// })
 
 route.get('/lesson/:id',authenticate.checkAuthenticateLesson,(req,res)=>{
     res.sendFile(path.join(__dirname+'/frontend/user_lesson/user_lesson.html'));

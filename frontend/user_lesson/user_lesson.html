@@ -3,40 +3,34 @@
         <head>
                 <meta charset="utf-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1">
-                <link rel="stylesheet" href="/admin_create/admin_createUser.css" >
-                <link rel="stylesheet" href="/user_lesson/user_lesson.css" >
+                <link rel="stylesheet" href="/general_resources/header_navigation/header_navigation.css">
+                <link rel="stylesheet" href="/user_lesson.css" >
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-                    <script type="text/javascript" src="/user_lesson/user_lesson.js"></script>
-                   
-                    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+                <script type="text/javascript" src="/user_lesson/user_lesson.js"></script>                   
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+                <script  type="text/javascript" src="/general_resources/js_resource/logout.js"></script>
                 </head>
                 <header>
                 <img src="/picture/logo.png" alt="">
                 </header>
                 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
                     <ul class="navbar-nav">
-                        <li class="nav-item" style="display: none;">
-                            <a class="nav-link " href="http://127.0.0.1:5000/web1">Manage List</a>
-                        </li>
-                        <li class="nav-item" style="display: none;">
-                            <a class="nav-link" href="http://127.0.0.1:5000/web">Create</a>
-                        </li>
                         <li class="nav-item">
                                 <a class="nav-link active" href="#">Lesson</a>
                             </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" href="/login" onclick="return logout(this)"><span style="color: white;margin-right:6px; "class="fas fa-sign-out-alt"></span>Log out</a>
+                            <a class="nav-link active" href="/login" onclick="return logout(this)"><span style="color: white;margin-right:6px;"class="fas fa-sign-out-alt"></span>Log out</a>
                         </li>
                     </ul>
                 </nav>
             
-<body style="background-color: #e6e6fa;" >
-
+<!-- <body style="background-color: #e6e6fa;" > -->
+ <body>
 <div id="title" class="template" >
         <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#home">default</a>
@@ -74,11 +68,10 @@
         </div>
     </div>
 </div>
+<h5 style="color: white;">บทเรียน</h5>
+<div class="main container" >
+       
 
-
-<div class="container-fluid" >
-
-        <h1>บทเรียน</h1>
         <div class="card">
             <div class="card-body">
     
@@ -103,6 +96,7 @@
         </div>
     
     </div>
+</img>
 </body>
 
 
