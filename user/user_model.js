@@ -1,24 +1,34 @@
-const mongoose = require("mongoose");
-const bcrpt = require("bcrypt");
-var userModel= mongoose.Schema({   
-     username : {type: String, index: {
-          unique: true,
-  }},
-     password : String,
-     role : String,
-     lesson : [{ 
-          name: String, 
-          invisible : { type: Boolean , default : false},
-          subject : [{
-               name : String, 
-               topic :[{ 
-                    name : String,
-                    link : String
-               }]
-          }]
-     }],
-     updateDate : {type:Date , default : Date}
-    
+const mongoose = require('mongoose');
+
+const userModel = mongoose.Schema({
+  name: { type: String },
+  username: {
+    type: String,
+    index: {
+      unique: true
+    }
+  },
+  password: String,
+  role: String,
+  lesson: [
+    {
+      name: String,
+      invisible: { type: Boolean, default: false },
+      subject: [
+        {
+          name: String,
+          topic: [
+            {
+              name: String,
+              link: String
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  updateDate: { type: Date, default: Date },
+  status: { type: Boolean, default: true }
 });
 
 // userModel.pre('save', function(next){
@@ -32,6 +42,4 @@ var userModel= mongoose.Schema({
 //      next(err);
 // })
 
-
- 
-module.exports =  mongoose.model('user',userModel);
+module.exports = mongoose.model('user', userModel);

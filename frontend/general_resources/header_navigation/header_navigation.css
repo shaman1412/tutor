@@ -1,0 +1,12 @@
+header {
+    background-color: black;
+    height: 30%;
+    width: 100%;
+}
+
+header img{
+    width: 160px;
+    height: 70px;
+    z-index: 1;
+    margin-left: 2rem;
+}

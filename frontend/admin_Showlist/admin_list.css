@@ -10,40 +10,11 @@ body{
 }
 
 table{
+    border-radius: 1em !important;
     width: 100%;
    
 }
 
-nav{
-    position: relative;;
-    color: white;
-}
-
-nav ul{
-    list-style-type: none;
-    margin: 0;
-    padding:0;
-    overflow: hidden;
-    background-color: black;
-}
-
-
-
-nav li{
-    float:left;
-}
-
-nav li a{
-    display:block;
-    padding:16px;
-    color: white;
-    text-decoration: none;
-    text-align: center;
-}
-
-nav li:hover{
-    background-color: orange;
-}
 
 #example thead   {
     padding-top: 12px;
@@ -51,8 +22,9 @@ nav li:hover{
     text-align: left;
     border-right: none;
     border-bottom: none;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2) , 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    color: black;
+    background: #0099CC;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2) , 0 2px 3px 0 rgba(0, 0, 0, 0.19);
+    color: white;
 }
 
 #example tbody{
@@ -61,15 +33,50 @@ nav li:hover{
 .main-content{
     height: 70%;
     background-color: white; 
-    margin-top:50px;
-    margin-left: 50px;
-    margin-right: 50px;
+    /* margin-top:50px; */
+    /* margin-left: 50px;
+    margin-right: 50px; */
     box-sizing: border-box;
-    padding:80px;
+    margin-top : 30px;
+    padding-right:80px;
+    padding-left:80px;
     border-radius: 9px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2) , 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2) , 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 
 }
+
+/* table.dataTable.order-column tbody tr > .sorting_1, table.dataTable.order-column tbody tr > .sorting_2, table.dataTable.order-column tbody tr > .sorting_3, table.dataTable.display tbody tr > .sorting_1, table.dataTable.display tbody tr > .sorting_2, table.dataTable.display tbody tr > .sorting_3 {
+    background: #eeeeee!important;
+}
+
+tbody tr{
+    background: #eeeeee!important;
+} */
+table.dataTable thead th, table.dataTable thead td {
+    border-bottom:none !important;
+}
+
+tbody:before {
+    /* This doesn't work because of border-collapse */
+    line-height:1px;
+    content:"_";
+    color:white;
+    display:block;
+}
+
+tbody tr{
+    cursor: pointer;
+}
+tbody tr:hover{
+    background-color: aliceblue !important;
+}
+.dataTables_paginate span a.paginate_button{
+    background-color: #0099CC !important;
+}
+.dataTables_paginate span a.paginate_button.current{
+    background-color: #33b5e5 !important;
+}
+
 .top-content{
     
     position: relative;
@@ -86,6 +93,59 @@ nav li:hover{
     width: 100%;
     position: relative;
 }
+
+.nav-create-user{
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.nav-create-user .nav-add-user{
+    background-color: #ffd700;
+    border-radius: 40px;
+    margin:auto;
+    padding:4px;
+
+}
+
+.nav-create-user .nav-add-user .nav-link{
+    display: inline;
+    color: white;
+}
+
+.nav-seach-user .nav-link {
+
+}
+
+.nav-seach-user {
+   margin: auto;
+}
+
+
+input.font-awsome {
+    font-family: Arial, Font Awesome\ 5 Free;
+    font-style: normal;
+   
+    text-decoration: inherit;
+}
+
+.have-fontawsome{
+    font-weight: 550;
+    border-radius: 40px;
+    border: solid #eeeeee;
+    display: inline;
+    background: #eeeeee;
+    min-width: 230px;
+    outline: none;
+    padding-left:10px;
+}
+
+table #example {
+
+}
+
+
+
+
 
 @media screen and (max-width:800px){
     .main-content{
