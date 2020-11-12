@@ -2,8 +2,9 @@ const bcrypts = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const UserModel = require('./user_model');
 const configure = require('../configure.json');
-
+const mongoose = require('mongoose');
 async function authenticate({ username, password }) {
+  console.log(mongoose.connection.readyState);
   const user = await UserModel.findOne({ username });
   if (user && bcrypts.compareSync(password, user.password)) {
     const { password, username, _id, role, ...otherAttr } = user.toObject();
